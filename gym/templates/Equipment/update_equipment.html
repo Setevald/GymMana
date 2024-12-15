@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Equipment</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Update Equipment</h1>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="equipment_name" class="form-label">Equipment Name:</label>
+                <input type="text" id="equipment_name" name="equipment_name" class="form-control" value="{{ equipment.equipment_name }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label>
+                <input type="text" id="type" name="type" class="form-control" value="{{ equipment.type }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cost" class="form-label">Cost:</label>
+                <input type="number" id="cost" name="cost" class="form-control" value="{{ equipment.cost }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="purchase_date" class="form-label">Purchase Date:</label>
+                <input type="date" id="purchase_date" name="purchase_date" class="form-control" value="{{ equipment.purchase_date|date:'Y-m-d' }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="condition" class="form-label">Condition:</label>
+                <input type="text" id="condition" name="condition" class="form-control" value="{{ equipment.condition }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="maintenance_id" class="form-label">Maintenance:</label>
+                <select id="maintenance_id" name="maintenance_id" class="form-select">
+                    <option value="" {% if not equipment.maintenance %}selected{% endif %}>None</option>
+                    {% for maintenance in maintenances %}
+                    <option value="{{ maintenance.maintenance_id }}" {% if equipment.maintenance and equipment.maintenance.maintenance_id == maintenance.maintenance_id %}selected{% endif %}>
+                        {{ maintenance.maintenance_type }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Equipment</button>
+            <a href="{% url 'equipment_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

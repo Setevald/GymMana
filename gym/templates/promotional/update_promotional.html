@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Promotion</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Update Promotion</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="promotional_name">Name:</label>
+                <input type="text" id="promotional_name" name="promotional_name" value="{{ promotional.promotional_name }}" required><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required>{{ promotional.description }}</textarea><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="promotional_start_date">Start Date:</label>
+                <input type="date" id="promotional_start_date" name="promotional_start_date" value="{{ promotional.promotional_start_date }}" required><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="promotional_end_date">End Date:</label>
+                <input type="date" id="promotional_end_date" name="promotional_end_date" value="{{ promotional.promotional_end_date }}" required><br>
+            </div>
+
+            <div class="mb-3">
+                <label for="discount_percentage">Discount Percentage:</label>
+                <input type="number" id="discount_percentage" name="discount_percentage" value="{{ promotional.discount_percentage }}" required><br>
+            </div>
+            <button type="submit">Update Promotion</button>
+        </form>
+    </div>
+    <a href="{% url 'promotional_list' %}">Back to Promotion List</a>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Equipment</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Equipment</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="equipment_id">Equipment ID:</label>
+                <input type="text" id="equipment_id" name="equipment_id" placeholder="Enter Equipment ID" required>
+            </div>
+            <div class="form-group">
+                <label for="equipment_name">Name:</label>
+                <input type="text" id="equipment_name" name="equipment_name" placeholder="Enter Equipment Name" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type" placeholder="Enter Type" required>
+            </div>
+            <div class="form-group">
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" placeholder="Enter Cost" required>
+            </div>
+            <div class="form-group">
+                <label for="purchase_date">Purchase Date:</label>
+                <input type="date" id="purchase_date" name="purchase_date" required>
+            </div>
+            <div class="form-group">
+                <label for="condition">Condition:</label>
+                <input type="text" id="condition" name="condition" placeholder="Enter Condition" required>
+            </div>
+            <div class="form-group">
+                <label for="maintenance_id">Maintenance:</label>
+                <select id="maintenance_id" name="maintenance_id">
+                    <option value="">None</option>
+                    {% for maintenance in maintenances %}
+                    <option value="{{ maintenance.maintenance_id }}">{{ maintenance.maintenance_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Add Equipment</button>
+        </form>
+        <a href="{% url 'equipment_list' %}" class="back-link">Back to Equipment List</a>
+    </div>
+</body>
+</html>

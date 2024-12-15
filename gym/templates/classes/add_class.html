@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Gym Class</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Add Gym Class</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="class_name" class="form-label">Class Name</label>
+            <input type="text" name="class_name" id="class_name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="class_schedule" class="form-label">Class Schedule</label>
+            <input type="date" name="class_schedule" id="class_schedule" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="trainer_id" class="form-label">Trainer</label>
+            <select name="trainer_id" id="trainer_id" class="form-select" required>
+                <option value="" disabled selected>Select Trainer</option>
+                {% for trainer in trainers %}
+                <option value="{{ trainer.trainer_id }}">{{ trainer.trainer_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Add Class</button>
+    </form>
+    <a href="{% url 'gym_classes_list' %}" class="back-link">Back to class List</a>
+</div>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

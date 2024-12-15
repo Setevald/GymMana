@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Management Dashboard</title>
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Custom sidebar CSS -->
+
+  <!-- Optional inline CSS (e.g., font or color tweaks) -->
+  
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <!-- Sidebar header -->
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="{% static 'imgs/logo.jpg' %}" alt="Gym Logo">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+      <button class="toggler sidebar-toggler" id="sidebarToggler">
+        <span class="material-symbols-rounded" id="sidebarIcon">chevron_right</span>
+      </button>      
+      <button class="toggler menu-toggler">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <!-- Primary top nav -->
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="{% url 'main' %}" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">dashboard</span>
+            <span class="nav-label">Main</span>
+          </a>
+          <span class="nav-tooltip">main</span>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'membership_login' %}" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Membership login</span>
+          </a>
+          <span class="nav-tooltip">Membership login</span>
+        </li>
+        <!-- Additional nav items -->
+        <li class="nav-item">
+          <a href="{% url 'trainer_login' %}" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">group</span>
+            <span class="nav-label">Trainer Login</span>
+          </a>
+          <span class="nav-tooltip">Trainer Login</span>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'equipment_list'%}" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">settings</span>
+            <span class="nav-label">Equipment</span>
+          </a>
+          <span class="nav-tooltip">Equipment</span>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'promotional_list'%}" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">local_offer</span>
+            <span class="nav-label">Promotion</span>
+          </a>
+          <span class="nav-tooltip">Promotion</span>
+        </li>
+      </ul>
+
+     
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Banner Start -->
+     <!-- Banner Section -->
+     <div class="banner">
+        <img src="{% static 'imgs/2.jpg' %}" alt="Gym Banner" class="img-fluid">
+    </div>
+    <!-- End Banner Section -->
+  </div>
+
+  <!-- JavaScript -->
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script> <!-- Custom sidebar JS -->
+</body>
+</html>
+
